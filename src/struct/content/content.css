@@ -1,0 +1,35 @@
+.full__wrapper {
+  padding-top: 20px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 20% 80%;
+      grid-template-columns: 20% 80%;
+}
+
+.nav__wrapper {
+  max-width: 165px;
+}
+
+.nav__inner {
+  margin-left: 28px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+}
+
+.nav__inner a {
+  font-size: 0.9em;
+  text-decoration: none;
+  color: black;
+  padding: 5px;
+}
+
+.nav__inner a:hover {
+  border-radius: 5px;
+  background-color: rgba(173, 216, 230, 0.2);
+}
+/*# sourceMappingURL=content.css.map */
