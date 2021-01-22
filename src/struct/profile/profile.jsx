@@ -57,7 +57,7 @@ const Post = (props) => {
                 <div className="wall__post__name">
                     {props.name}
                 </div>
-                <div className="wall__post__mesage">
+                <div className="wall__post__message">
                     {props.message}
                 </div>
             </div>

@@ -6,6 +6,8 @@ import React from "react";
 import ProfileContainer from "../profile/profileContainer";
 import ImContainer from "../im/imContainer";
 import {Provider} from "react-redux";
+import AllContainer from "../allUsers/allContainer";
+
 
 // import header from '../header/header.module.css'
 //  Provider - метод, который позволяет всем своим child передать какие-либо props-ы
@@ -20,6 +22,7 @@ const Content = (props) => {
                     <a href="#">Новости</a>
                     <NavLink to="/im">Мессенджер</NavLink>
                     <a href="#">Друзья</a>
+                    <NavLink to="/all">Все пользователи</NavLink>
                     <a href="#">Сообщества</a>
                     <a href="#">Фотографии</a>
                     <a href="#">Музыка</a>
@@ -27,11 +30,12 @@ const Content = (props) => {
                     <a href="#">Клипы</a>
                 </div>
             </div>
-            
+
             <Route path="/im_1" component={dialogWithUser} />
             <Provider store={props.store}>
-                <Route path="/danyducky" render={() => <ProfileContainer />} />
-                <Route path='/im' render={() => <ImContainer />} />
+                <Route path="/danyducky" render={ () => <ProfileContainer />} />
+                <Route path="/im" render={ () => <ImContainer />} />
+                <Route path="/all" render={ () => <AllContainer />} />
             </Provider>
 
         </div>

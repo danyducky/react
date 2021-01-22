@@ -1,0 +1,31 @@
+.allUsers__wrapper .allusers__pages {
+  display: flex;
+}
+
+.user__wrapper {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.user__wrapper .user {
+  display: flex;
+  align-items: center;
+}
+.user__wrapper .user div {
+  padding-right: 10px;
+}
+
+.pageNumber {
+  margin-left: 10px;
+}
+
+.activePage {
+  font-weight: bold;
+}
+
+.loadingImage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+/*# sourceMappingURL=all.css.map */
