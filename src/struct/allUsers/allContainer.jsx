@@ -87,7 +87,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-
 const all = connect(mapStateToProps, mapDispatchToProps)(allContainer)
 
 export default all;

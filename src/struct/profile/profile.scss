@@ -21,22 +21,29 @@
 .second__column__wrap {
     text-align: center;
     .profile__avatar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         grid-column: 1;
         grid-row: 1;
         position: relative;
         min-height: 300px;
-        .img {
-            background-image: url('./img/ava.jpg');
-            background-size: 200px;
-            background-repeat: no-repeat;
-            background-position: center center;
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            margin: auto;
+
+        img {
+
         }
+        //.img {
+        //    background-image: url('./img/ava.jpg');
+        //    background-size: 200px;
+        //    background-repeat: no-repeat;
+        //    background-position: center center;
+        //    position: absolute;
+        //    left: 0;
+        //    right: 0;
+        //    top: 0;
+        //    bottom: 0;
+        //    margin: auto;
+        //}
     }
 
     

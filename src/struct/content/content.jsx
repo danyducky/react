@@ -18,7 +18,7 @@ const Content = (props) => {
         <div className="full__wrapper">
             <div className="nav__wrapper">
                 <div className="nav__inner">
-                    <NavLink to="/danyducky">Моя страница</NavLink>
+                    <NavLink to="/profile">Моя страница</NavLink>
                     <a href="#">Новости</a>
                     <NavLink to="/im">Мессенджер</NavLink>
                     <a href="#">Друзья</a>
@@ -33,7 +33,8 @@ const Content = (props) => {
 
             <Route path="/im_1" component={dialogWithUser} />
             <Provider store={props.store}>
-                <Route path="/danyducky" render={ () => <ProfileContainer />} />
+                <Route path="/profile/:userId" render={ () => <ProfileContainer />} />
+                <Route exact path="/profile" render={ () => <ProfileContainer />} />
                 <Route path="/im" render={ () => <ImContainer />} />
                 <Route path="/all" render={ () => <AllContainer />} />
             </Provider>

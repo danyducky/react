@@ -3,6 +3,10 @@ import './profile.css'
 
 
 const Profile = (props) => { //props.state.profilePage
+    // if (!props.isLoading) {
+    //     console.log(props.userProfile.photos.large)
+    // }
+
     const posts = props.posts.map( (el) => <Post name={el.from} message={el.message} /> )
 
     const ta = React.createRef()
@@ -21,7 +25,15 @@ const Profile = (props) => { //props.state.profilePage
         <div className="grid_wrapper">
             <div className="second__column__wrap">
                 <div className="profile__avatar box-shadow">
-                    <div className="img" />
+                    {!props.isLoading ?
+                        !props.userProfile.photos.large ?
+                            <img src="img/ava.jpg" alt=""/>
+                            :
+                            <img src={props.userProfile.photos.large} width="200" alt=""/>
+                        :
+                        null
+                    }
+                    {/*<img src={props.profile.photos.large} alt=""/>*/}
                 </div>
             </div>
 
@@ -32,7 +44,7 @@ const Profile = (props) => { //props.state.profilePage
             <div className="content__column_wrap box-shadow">
                 <div className="content">
                     <div className="content__name">
-                        FIO
+                        {props.userProfile.fullName}
                     </div>
                 </div>
             </div>
