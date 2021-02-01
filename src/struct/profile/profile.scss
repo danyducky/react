@@ -61,27 +61,6 @@
     grid-template-columns: 90% max-content();
     gap: 15px;
 
-    .wall__textarea {
-        display: flex;
-
-        textarea {
-            width: 100%;
-            border: 0;
-            overflow: auto;
-            outline: none;
-            resize: none;
-            text-decoration: none;
-        }
-
-        .wall__post__button {
-            padding: 8px;
-            align-self: center;
-            margin-left: 20px;
-            border: 0;
-            text-align: center;
-        }
-    }
-
     .wall__content {
         grid-column-start: 1;
         grid-column-end: 2;
@@ -93,5 +72,28 @@
 
     .wall__content__post {
         padding: 10px;
+    }
+}
+
+.postAreaForm {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    textarea {
+        width: 100%;
+        border: 0;
+        overflow: auto;
+        outline: none;
+        resize: none;
+        text-decoration: none;
+    }
+
+    button {
+        padding: 8px;
+        align-self: center;
+        margin-left: 20px;
+        border: 0;
+        text-align: center;
     }
 }

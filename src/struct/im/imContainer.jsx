@@ -1,7 +1,20 @@
 import Im from "./im";
 import {connect} from "react-redux";
+import {compose} from "redux";
+import React from 'react'
+import withAuthCheck, {withAuthProps} from "../utils/HOCs/withAuthCheck";
 
 
+
+class ImContainer extends React.Component {
+
+
+    render() {
+        return (
+            <Im {...this.props}/>
+        )
+    }
+}
 
 
 const mapStateToProps = (state) => {
@@ -17,6 +30,10 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-const ImContainer = connect(mapStateToProps, mapDispatchToProps)(Im)
 
-export default ImContainer;
+
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthProps,
+    withAuthCheck
+)(ImContainer);

@@ -11,8 +11,7 @@ header {
   width: 100vw;
   height: 50px;
   font-size: 30px;
-  -webkit-box-shadow: 0 6px 4px -4px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 6px 4px -4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 4px -4px rgba(0, 0, 0, 0.1);
 }
 
 .wrapper {
@@ -22,24 +21,14 @@ header {
 }
 
 .header__inner {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 200px 260px (1fr)[2];
-      grid-template-columns: 200px 260px repeat(2, 1fr);
+  grid-template-columns: 200px 260px repeat(2, 1fr);
 }
-
 .header__inner .header__inner_logo {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  align-items: center;
+  justify-content: flex-start;
 }
-
 .header__inner .header__inner_logo .img {
   width: 30px;
   height: 30px;
@@ -49,16 +38,13 @@ header {
   background-position: center;
   margin-right: 3px;
 }
-
 .header__inner .header__inner_logo .text {
   font-family: serif;
   font-size: 32px;
 }
-
 .header__inner .header__inner_search {
   padding-right: 20px;
 }
-
 .header__inner .header__inner_search input {
   width: 100%;
   border: 10px solid gainsboro;
@@ -66,17 +52,23 @@ header {
   height: 34px;
   background-color: gainsboro;
 }
-
 .header__inner .header__inner_notifications img {
   padding: 5px 10px;
   padding-bottom: 10px;
 }
-
 .header__inner .header__inner_notifications img:hover {
   background-color: gainsboro;
 }
-
 .header__inner .header__inner_profile {
   margin-left: auto;
 }
+
+.header__profile__right__wrapper .header__profile__name {
+  font-size: 24px;
+}
+.header__profile__right__wrapper .header__profile__exit {
+  font-size: 12px;
+  text-align: center;
+}
+
 /*# sourceMappingURL=header.css.map */

@@ -1,30 +1,24 @@
 import {
     pushNewPostAction,
     newPostTextChangerAction,
-    setUserProfileAction,
-    setLoadStatusAction
+    setUserProfileAction, getProfileThunk,
 } from '../../redux/reducers/profile-reducer'
 import Profile from "./profile";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import React from 'react';
-import * as axios from "axios";
+import {compose} from "redux";
 
 
 class profileContainer extends React.Component {
 
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${this.props.match.params.userId}`)
-            .then( (response) => {
-                this.props.setUserProfile(response.data)
-                this.props.setLoadStatus(false)
-            })
-
+        this.props.getProfileThunk(this.props.match.params.userId, this.props.userData.id, this.props)
     }
 
     render() {
         return (
-            <Profile {...this.props} profile={this.props.userProfile} />
+            <Profile {...this.props}/>
         )
     }
 }
@@ -34,7 +28,7 @@ const mapStateToProps = (state) => {
         userProfile: state.profilePage.userProfile,
         posts: state.profilePage.posts,
         newPostText: state.profilePage.newPostText,
-        isLoading: state.profilePage.isLoading
+        userData: state.auth.userData,
     }
 }
 
@@ -49,14 +43,16 @@ const mapDispatchToProps = (dispatch) => {
         setUserProfile: (userProfile) => {
             dispatch(setUserProfileAction(userProfile))
         },
-        setLoadStatus: (isLoading) => {
-            dispatch(setLoadStatusAction(isLoading))
+
+        getProfileThunk: (userId, defaultId, props) => {
+            dispatch(getProfileThunk(userId, defaultId, props))
         }
     }
 }
 
-const ProfileRouter = withRouter(profileContainer)
 
-const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(ProfileRouter)
 
-export default ProfileContainer;
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withRouter,
+)(profileContainer);

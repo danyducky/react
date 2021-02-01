@@ -1,3 +1,6 @@
+import usersAPI from "../DAL/dal";
+import React from "react";
+
 const initialState = {
     userProfile: [],
     newPostText: '',
@@ -6,7 +9,6 @@ const initialState = {
         {id: 2, from: 'Evgeniy', message: 'Hi, Danil!'},
         {id: 3, from: 'Innokentiy', message: 'qqq!'}
     ],
-    isLoading: true,
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -18,12 +20,14 @@ const profileReducer = (state = initialState, action) => {
                 message: action.message
             }
             return {
+                ...state,
                 posts: [...state.posts, newPost],
                 newPostText: ''
             }
         }
         case 'newPostTextChanger': {
             return {
+                ...state,
                 posts: [...state.posts],
                 newPostText: action.text
             }
@@ -32,12 +36,6 @@ const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 userProfile: action.userProfile
-            }
-        }
-        case 'setLoadStatus': {
-            return {
-                ...state,
-                isLoading: action.isLoading
             }
         }
         default:
@@ -66,10 +64,19 @@ export const setUserProfileAction = (userProfile) => {
     }
 }
 
-export const setLoadStatusAction = (isLoading) => {
-    return {
-        type: 'setLoadStatus',
-        isLoading: isLoading
+export const getProfileThunk = (userId, defaultId, props) => (dispatch) => {
+    if (userId !== undefined) {
+        usersAPI.getProfile(userId)
+            .then((response) => {
+                dispatch(setUserProfileAction(response.data))
+            })
+    } else if (defaultId) {
+        usersAPI.getProfile(defaultId)
+            .then((response) => {
+                dispatch(setUserProfileAction(response.data))
+            })
+    } else {
+        props.history.push('/login')
     }
 }
 

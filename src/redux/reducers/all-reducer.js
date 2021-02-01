@@ -1,3 +1,4 @@
+import usersAPI from "../DAL/dal";
 
 
 const initialState = {
@@ -99,6 +100,17 @@ export const setLoadStatusAction = (isLoading) => {
         isLoading: isLoading
     }
 }
+
+export const getUsersThunk = (pageSize, currentPage) => (dispatch) =>
+    {
+        dispatch(setLoadStatusAction(true))
+        usersAPI.getUsers(pageSize, currentPage)
+            .then( (response) => {
+                dispatch(setLoadStatusAction(false))
+                dispatch(setUsersAction(response.data.items))
+                dispatch(setTotalCountAction(response.data.totalCount))
+            })
+    }
 
 
 

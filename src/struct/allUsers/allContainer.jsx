@@ -1,38 +1,25 @@
 import {connect} from "react-redux";
 import {
-    followAction,
+    followAction, getUsersThunk,
     setCurrentPageAction, setLoadStatusAction,
     setTotalCountAction,
     setUsersAction,
     unfollowAction
 } from '../../redux/reducers/all-reducer'
 import React from "react";
-import * as axios from "axios";
 import Users from "./allUsers";
+import {compose} from "redux";
 
 
 
 class allContainer extends React.Component {
     componentDidMount() { // как только весь JSX вмонтировался в DOM дерево - вызывается этот метод и срабатывает лишь раз
-        this.props.setLoadStatus(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`)
-            .then( (response) => {
-                this.props.setLoadStatus(false)
-                this.props.setUsers(response.data.items)
-                this.props.setTotalCount(response.data.totalCount)
-            })
+        this.props.getUsersThunk(this.props.pageSize, this.props.currentPage)
     }
 
     onPageChange = (page) => {
         this.props.setCurrentPage(page)
-        this.props.setLoadStatus(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${page}`)
-            .then( (response) => {
-                this.props.setLoadStatus(false)
-                this.props.setUsers(response.data.items)
-                this.props.setTotalCount(response.data.totalCount)
-            })
-
+        this.props.getUsersThunk(this.props.pageSize, page)
     }
 
     render() {
@@ -44,8 +31,6 @@ class allContainer extends React.Component {
 
 
 }
-
-
 
 
 const mapStateToProps = (state) => {
@@ -82,11 +67,16 @@ const mapDispatchToProps = (dispatch) => {
 
         setLoadStatus: (isLoading) => {
             dispatch(setLoadStatusAction(isLoading))
+        },
+
+        getUsersThunk: (pageSize, currentPage) => {
+            dispatch(getUsersThunk(pageSize, currentPage))
         }
     }
 }
 
 
-const all = connect(mapStateToProps, mapDispatchToProps)(allContainer)
 
-export default all;
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+)(allContainer);

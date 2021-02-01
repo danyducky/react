@@ -1,8 +1,8 @@
 import React from "react";
 import './all.css'
 import profileImage from './img/profile_img.png'
-import loading from './img/load.gif'
 import {NavLink} from "react-router-dom";
+import Loader from "../utils/loader";
 
 const Users = (props) => { //this.User({id: user.id, name: user.name, img: user.photos.small, followed: user.followed})
     const allUsers = props.users.map((user) => <User img={user.photos.small} id={user.id}
@@ -28,7 +28,7 @@ const Users = (props) => { //this.User({id: user.id, name: user.name, img: user.
             <div className="allUsers__pages">
                 {pages}
             </div>
-            {props.loadStatus ? <img className="loadingImage" src={loading} alt=""/> : allUsers}
+            {props.loadStatus ? <Loader /> : allUsers}
         </div>
     )
 }
